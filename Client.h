@@ -16,7 +16,6 @@ class Client
         void pollConnectionChange();
         void onConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *info);
 
-
         static Client *callbackInstance;
         static void connectionStatusChangedCallback(SteamNetConnectionStatusChangedCallback_t *info)
         {
