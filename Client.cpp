@@ -2,6 +2,7 @@
 #include<iostream>
 #include <thread>
 #include <mutex>
+#include <cassert>
 
 
 void Client::run(const SteamNetworkingIPAddr &serverAddress)
@@ -67,6 +68,8 @@ bool Client::reciveMessage(ISteamNetworkingMessage *messageResult)
 }
 
 void Client::onConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t *info){
+    
+    assert(info->m_hConn == connection || k_HSteamNetConnection_Invalid );
     
     switch(info->m_info.m_eState){
         case k_ESteamNetworkingConnectionState_ClosedByPeer:
