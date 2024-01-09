@@ -1,6 +1,7 @@
 #include "Server.h"
 #include<iostream>
 #include <cassert>
+#include <thread>
 
 void Server::run(uint16 nPort){
     sockets = SteamNetworkingSockets();
@@ -30,7 +31,9 @@ void Server::run(uint16 nPort){
     bool active = true;
     while(true)
     {
-        // TODO: Server polling
+        pollIncomingMessages();
+        pollConnectionStateChanges();
+        std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
         active = false;
     }
 
